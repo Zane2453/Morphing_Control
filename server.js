@@ -36,6 +36,9 @@ socketIo.on('connection', function(socket){
 /* IoTtalk Setting */
 let IDFList = [
         ['Acceleration', ['g', 'g', 'g']]
+    ],
+    ODFList = [
+        ['Display', ['g']]
     ];
     
 function on_signal(cmd, param){
@@ -56,6 +59,7 @@ dan2.register(config.IoTtalkURL, {
     'on_signal': on_signal,
     'on_data': on_data,
     'idf_list': IDFList,
+    'odf_list': ODFList,
     'profile': {
         'model': 'Smartphone',
     },

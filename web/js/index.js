@@ -5,8 +5,8 @@ var acc_flag = false;
 var cooldown_interval = 750;
 var cooldown = true;
 
-var higher_threshold = 35.0;
-var lower_threshold = 20.0;
+var higher_threshold = 75.0;
+var lower_threshold = 10.0;
 
 function deviceMotionHandler(event){
     if(acc_flag){
@@ -30,32 +30,16 @@ function clear_cooldown(){
 
 function sendAccData(raw_data){
     if(cooldown){
-        let data = Math.sqrt(raw_data.x * raw_data.x + raw_data.y * raw_data.y + raw_data.z * raw_data.z);
+        //console.log(raw_data.x, raw_data.y, raw_data.z);
+        var data = Math.sqrt(raw_data.x * raw_data.x + raw_data.y * raw_data.y + raw_data.z * raw_data.z);
         // console.log(data);
-
         if(data > higher_threshold){
-            console.log("shake hard");
-            cooldown = false;
-            setTimeout(clear_cooldown, cooldown_interval);
-
-            //removeEventListener
-            stop_sensor_data();
-
-            socket.emit("Acceleration", [data.x, data.y, data.z]);
-
-            // start countdown
-            lastClickTime = new Date();
+            data = higher_threshold;
         }
-        else if (data > lower_threshold){
-            console.log("shake light");
-            cooldown = false;
-            setTimeout(clear_cooldown, cooldown_interval);
-
-            socket.emit("Acceleration", [data.x, data.y, data.z]);
-
-            // start countdown
-            lastClickTime = new Date();
+        else if(data < lower_threshold){
+            data = lower_threshold;
         }
+        socket.emit("Acceleration", data);
     }
 }
 

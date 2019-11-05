@@ -12,8 +12,10 @@
     "ejs": "^2.7.1",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
+    "mqtt": "^3.0.0",
     "sequelize": "^4.41.2",
     "socket.io": "^2.3.0",
-    "sqlite3": "^4.0.6"
+    "sqlite3": "^4.0.6",
+    "superagent": "^5.1.0"
   }
 }

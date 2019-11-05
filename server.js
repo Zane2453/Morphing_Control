@@ -4,10 +4,10 @@ var express = require('express'),
     socketIo = require('socket.io')(server),
     config = require('./config'),
     fs = require('fs'),
+    dan2 = require('./iottalk/dan2').dan2(),
     expressSession = require('express-session'),
     IndexPagePath = __dirname + "/web/html/index.html",
-    IndexPage = fs.readFileSync(IndexPagePath, 'utf8'),
-    dan2 = require('./dan2').dan2();
+    IndexPage = fs.readFileSync(IndexPagePath, 'utf8');
 
 // initialize app
 app.use(express.static('./web'));
@@ -22,6 +22,8 @@ app.get('/', function(req, res){
     res.end(IndexPage);
 });
 
+server.listen((process.env.PORT || config.port), '0.0.0.0');
+
 /*** socket.io ***/
 socketIo.on('connection', function(socket){
     socket.on("Acceleration", function(msg){
@@ -34,7 +36,7 @@ socketIo.on('connection', function(socket){
 /* IoTtalk Setting */
 let IDFList = [
         ['Acceleration', ['g', 'g', 'g']]
-    ],;
+    ];
     
 function on_signal(cmd, param){
     console.log('[cmd]', cmd, param);
@@ -59,5 +61,3 @@ dan2.register(config.IoTtalkURL, {
     },
     'accept_protos': ['mqtt'],
 }, init_callback);
-
-server.listen((process.env.PORT || config.port), '0.0.0.0');

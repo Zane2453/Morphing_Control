@@ -2,7 +2,7 @@ var socket = io();
 
 var acc_flag = false;
 
-var cooldown_interval = 750;
+var cooldown_interval = 500;
 var cooldown = true;
 
 var higher_threshold = 75.0;
@@ -39,6 +39,9 @@ function sendAccData(raw_data){
         // else if(data < lower_threshold){
         //     data = lower_threshold;
         // }
+        cooldown = false;
+        setTimeout(clear_cooldown, cooldown_interval);
+
         socket.emit("Acceleration", [raw_data.x, raw_data.y, raw_data.z]);
     }
 }

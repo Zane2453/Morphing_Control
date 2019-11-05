@@ -28,7 +28,7 @@ server.listen((process.env.PORT || config.port), '0.0.0.0');
 socketIo.on('connection', function(socket){
     socket.on("Acceleration", function(msg){
         dan2.push('Acceleration', msg);
-        //console.log(motion, typeof(motion));
+        //console.log(msg);
     });
 });
 

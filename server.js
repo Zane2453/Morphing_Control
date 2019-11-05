@@ -6,7 +6,8 @@ var express = require('express'),
     fs = require('fs'),
     expressSession = require('express-session'),
     IndexPagePath = __dirname + "/web/html/index.html",
-    IndexPage = fs.readFileSync(IndexPagePath, 'utf8');
+    IndexPage = fs.readFileSync(IndexPagePath, 'utf8'),
+    dan2 = require('./dan2').dan2();
 
 // initialize app
 app.use(express.static('./web'));
@@ -24,9 +25,39 @@ app.get('/', function(req, res){
 /*** socket.io ***/
 socketIo.on('connection', function(socket){
     socket.on("Acceleration", function(msg){
-        motion = ((msg - 10) * 10.0 )/ 65.0;
-        console.log(motion, typeof(motion));
+        dan2.push('Acceleration', msg);
+        //console.log(motion, typeof(motion));
     });
 });
+
+/*--------------------------------------------------------------------------------*/
+/* IoTtalk Setting */
+let IDFList = [
+        ['Acceleration', ['g', 'g', 'g']]
+    ],;
+    
+function on_signal(cmd, param){
+    console.log('[cmd]', cmd, param);
+    return true;
+}
+
+function on_data(odf_name, data){
+    console.log('[data]', odf_name, data);
+}
+
+function init_callback(result) {
+    console.log('[da] register:', result);
+}
+
+dan2.register(config.IoTtalkURL, {
+    'name': "1.Smartphone",
+    'on_signal': on_signal,
+    'on_data': on_data,
+    'idf_list': IDFList,
+    'profile': {
+        'model': 'Smartphone',
+    },
+    'accept_protos': ['mqtt'],
+}, init_callback);
 
 server.listen((process.env.PORT || config.port), '0.0.0.0');

@@ -31,15 +31,15 @@ function clear_cooldown(){
 function sendAccData(raw_data){
     if(cooldown){
         //console.log(raw_data.x, raw_data.y, raw_data.z);
-        var data = Math.sqrt(raw_data.x * raw_data.x + raw_data.y * raw_data.y + raw_data.z * raw_data.z);
+        // var data = Math.sqrt(raw_data.x * raw_data.x + raw_data.y * raw_data.y + raw_data.z * raw_data.z);
         // console.log(data);
-        if(data > higher_threshold){
-            data = higher_threshold;
-        }
-        else if(data < lower_threshold){
-            data = lower_threshold;
-        }
-        socket.emit("Acceleration", data);
+        // if(data > higher_threshold){
+        //     data = higher_threshold;
+        // }
+        // else if(data < lower_threshold){
+        //     data = lower_threshold;
+        // }
+        socket.emit("Acceleration", [raw_data.x, raw_data.y, raw_data.z]);
     }
 }
 

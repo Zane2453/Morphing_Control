@@ -24,7 +24,8 @@ app.get('/', function(req, res){
 /*** socket.io ***/
 socketIo.on('connection', function(socket){
     socket.on("Acceleration", function(msg){
-        console.log(msg);
+        motion = ((msg - 10) * 10.0 )/ 65.0;
+        console.log(motion, typeof(motion));
     });
 });
 

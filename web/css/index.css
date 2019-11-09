@@ -11,18 +11,12 @@ html, body, .container-table {
     vertical-align: middle;
 }
 .function_btn{
-    margin-top: 5px;
+    margin-top: 25px;
     width:275px;
     /*height:80px;*/
     border-radius: 25px;
     font-size: 25px;
     font-weight: bold;
-}
-.optionBtn, .memberBtn{
-    width:300px;
-    /*height:50px;*/
-    border-radius: 10px;
-    font-size: 20px;
 }
 #shakeImage{
     display: block;
@@ -41,7 +35,8 @@ label{
     text-align: center;
     vertical-align: middle;
     width: 100%;
-    font-size: large;
+    font-size: 25px;
+    font-weight: bold;
 }
 .slidecontainer {
     display: none;

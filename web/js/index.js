@@ -19,10 +19,20 @@ function get_sensor_data(){
     acc_flag = true;
 }
 
-function stop_sensor_data(){
-    acc_flag = false;
-    console.log("successfully removeEventListener");
+function chnegeUI(){
+    if(acc_flag){
+        $('#shakeImage').css('display', 'block');
+        $('.slidecontainer').css('display', 'none');
+    }else{
+        $('#shakeImage').css('display', 'none');
+        $('.slidecontainer').css('display', 'block');
+    }
 }
+
+// function stop_sensor_data(){
+//     acc_flag = false;
+//     console.log("successfully removeEventListener");
+// }
 
 function clear_cooldown(){
     cooldown = true;
@@ -46,9 +56,22 @@ function sendAccData(raw_data){
     }
 }
 
+function showVal(index, newVal){
+    $('#'+index+'_o').text(index + ": " + newVal);
+    socket.emit("poll", index, newVal);
+  }
 
 $(document).ready(function(){
     get_sensor_data();
+
+    $('#modeBtn').on('click', function(){
+        acc_flag = !acc_flag;
+        chnegeUI();
+    });
+
+    // $("#shape").on("input change", function(){
+    //     console.log($('#shape').val());
+    // });
 
     // add for Acceleration
     window.addEventListener('devicemotion', deviceMotionHandler, false);

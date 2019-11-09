@@ -1,8 +1,13 @@
 var express = require('express'),
     app = express(),
-    server = require('http').createServer(app),
-    socketIo = require('socket.io')(server),
     config = require('./config'),
+    redirectApp = express(),
+    server =  (config.https) ?
+        require('https').createServer(config.httpServerOptions, app) :
+        require('http').createServer(app),
+    httpRedirectServer = (config.https) ?
+        require('http').createServer(redirectApp) : null,
+    socketIo = require('socket.io')(server),
     fs = require('fs'),
     dan2 = require('./iottalk/dan2').dan2(),
     expressSession = require('express-session'),
@@ -22,7 +27,15 @@ app.get('/', function(req, res){
     res.end(IndexPage);
 });
 
-server.listen((process.env.PORT || config.port), '0.0.0.0');
+if(config.https) {
+    server.listen(config.httpsPort, '0.0.0.0');
+    httpRedirectServer.listen(config.httpPort, '0.0.0.0');
+    redirectApp.get('*', function(req, res) {
+        res.redirect('https://' + req.headers.host + req.url);
+    });
+}
+else
+    server.listen(config.httpPort, '0.0.0.0');
 
 /*** socket.io ***/
 socketIo.on('connection', function(socket){
@@ -30,12 +43,19 @@ socketIo.on('connection', function(socket){
         dan2.push('Acceleration', msg);
         //console.log(msg);
     });
+    socket.on("poll", function(df, msg){
+        dan2.push(df+'-I', [msg]);
+    });
 });
 
 /*--------------------------------------------------------------------------------*/
 /* IoTtalk Setting */
 let IDFList = [
-        ['Acceleration', ['g', 'g', 'g']]
+        ['Acceleration', ['g', 'g', 'g']],
+        ['Amplitude-I', ['g']],
+        ['Shape-I', ['g']],
+        ['Vibration-I', ['g']],
+        ['Rotation-I', ['g']],
     ],
     ODFList = [
         ['Display', ['g']]
@@ -61,7 +81,7 @@ dan2.register(config.IoTtalkURL, {
     'idf_list': IDFList,
     'odf_list': ODFList,
     'profile': {
-        'model': 'Smartphone',
+        'model': 'Processing_Control',
     },
     'accept_protos': ['mqtt'],
 }, init_callback);

@@ -3,32 +3,12 @@ html, body, .container-table {
     height: 100%;
     background-color: #f7e1b5;
 }
-.manually-show-modal {
-    display:block !important;
-    z-index: 1060;
-}
-.my_modal_backdrop {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1055;
-    background-color: #000;
-    opacity: 0.5;
-}
 .container-table {
     display: table;
 }
 .vertical-center-row {
     display: table-cell;
     vertical-align: middle;
-}
-#loadingIndicator {
-  margin: auto;
-  width: 200px;
-  height: 200px;
-  position: relative;
 }
 .function_btn{
     margin-top: 5px;
@@ -38,41 +18,10 @@ html, body, .container-table {
     font-size: 25px;
     font-weight: bold;
 }
-.my_ul{
-    list-style-type: none;
-    text-align: center;
-    height: 275px;
-    overflow-y: scroll;
-}
-.my_li_btn{
-    width:300px;
-    /*height:50px;*/
-    border-radius: 10px;
-    font-size: 25px;
-    margin-bottom: 10px;
-}
-#options, #member_options{
-    list-style-type: none;
-    text-align: center;
-}
-#options li, #member_options li{
-    margin-top: 10px;
-}
-ul{
-    padding: 0px;
-}
 .optionBtn, .memberBtn{
     width:300px;
     /*height:50px;*/
     border-radius: 10px;
-    font-size: 20px;
-}
-.alert{
-    text-align: center;
-    width: 275px;
-    margin: 0 auto;
-    height: 30px;
-    padding: 0px;
     font-size: 20px;
 }
 #shakeImage{
@@ -81,51 +30,6 @@ ul{
     width: 300px;
     margin-bottom: 5px;
 }
-#successName_wrapper{
-    overflow: hidden;
-}
-#successName{
-    text-align: center;
-    font-size: 25px;
-    font-weight: bold;
-    height: 150px;
-    /*overflow:auto;*/
-    overflow-y: scroll;
-}
-#successImage{
-    display: block;
-    margin: auto;
-    width: 125px;
-    margin-bottom: 5px;
-}
-#prompt{
-    text-align: center;
-    font-weight: bold;
-    font-size: 30px;
-}
-#prompt2{
-    text-align: center;
-    width: 275px;
-    margin: 0 auto;
-    height: 30px;
-    padding: 0px;
-    font-size: 20px;
-}
-.my_prompt{
-    text-align: center;
-    font-weight: bold;
-    font-size: 30px;
-    margin-bottom: 15px;
-}
-#chance{
-    text-align: center;
-    width: 275px;
-    margin: 0 auto;
-    margin-bottom: 5px;
-    height: 30px;
-    padding: 0px;
-    font-size: 20px;
-}
 .btn{
     white-space:normal !important;
     word-wrap: break-word; 
@@ -133,3 +37,47 @@ ul{
 #btns{
     text-align: center;
 }
+label{
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+    font-size: large;
+}
+.slidecontainer {
+    display: none;
+    width: 100%; /* Width of the outside container */
+    text-align: center;
+  }
+  
+.slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 80%; /* Full-width */
+    height: 100%; /* Specified height */
+    background: #ffffff; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+  }
+  /* Mouse-over effects */
+.slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+  }
+  
+  /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #4CAF50; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #4CAF50; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+  }

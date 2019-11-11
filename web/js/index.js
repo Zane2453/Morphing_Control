@@ -62,7 +62,20 @@ function showVal(index, newVal){
   }
 
 $(document).ready(function(){
-    get_sensor_data();
+    $('#shakeBtn').on('click', function(){
+        $('#prompt').css('display', 'none');
+        $('#mode_options').css('display', 'none');
+        $('#shakeImage').css('display', 'block');
+        $('#modeBtn').css('display', 'inline');
+        get_sensor_data();
+    });
+
+    $('#slideBtn').on('click', function(){
+        $('#prompt').css('display', 'none');
+        $('#mode_options').css('display', 'none');
+        $('.slidecontainer').css('display', 'block');
+        $('#modeBtn').css('display', 'inline');
+    });
 
     $('#modeBtn').on('click', function(){
         acc_flag = !acc_flag;

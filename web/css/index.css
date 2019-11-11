@@ -10,6 +10,11 @@ html, body, .container-table {
     display: table-cell;
     vertical-align: middle;
 }
+#prompt{
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+}
 .function_btn{
     margin-top: 25px;
     width:275px;
@@ -18,8 +23,24 @@ html, body, .container-table {
     font-size: 25px;
     font-weight: bold;
 }
+ul{
+    padding: 0px;
+}
+.my_ul{
+    list-style-type: none;
+    text-align: center;
+    height: 275px;
+    overflow-y: scroll;
+}
+.my_li_btn{
+    width:300px;
+    /*height:50px;*/
+    border-radius: 10px;
+    font-size: 25px;
+    margin-top: 20px;
+}
 #shakeImage{
-    display: block;
+    display: none;
     margin: auto;
     width: 300px;
     margin-bottom: 5px;

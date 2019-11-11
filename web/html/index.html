@@ -13,25 +13,30 @@
     <div class="container container-table">
         <div class="row vertical-center-row">
             <div class="center-block">
+                <div id="prompt"  class="prompts">Choose Mode</div>
+                <ul id="mode_options" class="uls my_ul">
+                    <li><button id="shakeBtn" class="modeBtn btn btn-primary center-block my_li_btn">Shake Mode</button></li>
+                    <li><button id="slideBtn" class="modeBtn btn btn-primary center-block my_li_btn">Slide Mode</button></li>
+                </ul>
                 <div><img id="shakeImage" src="icon/shake.png"></div>
                 <div class="slidecontainer">
-                    <label id='Shape_o'>Shape: 0</label>
-                    <input type="range" min="0" max="10" value="0" step='1' class="slider" id="Shape" onchange="showVal($(this).attr('id'), $(this).val())">
+                    <label id='Shape_o'>Shape: 9</label>
+                    <input type="range" min="0" max="10" value="9" step='1' class="slider" id="Shape" onchange="showVal($(this).attr('id'), $(this).val())">
                 </div>
                 <div class="slidecontainer">
-                    <label id="Amplitude_o">Amplitude: 0</label>
-                    <input type="range" min="0" max="10" value="0" step='0.01' class="slider" id="Amplitude" onchange="showVal($(this).attr('id'), $(this).val())">
+                    <label id="Amplitude_o">Amplitude: 0.1</label>
+                    <input type="range" min="0" max="10" value="0.1" step='0.001' class="slider" id="Amplitude" onchange="showVal($(this).attr('id'), $(this).val())">
                 </div>
                 <div class="slidecontainer">
-                    <label id="Vibration_o">Vibration: 0</label>
-                    <input type="range" min="0" max="10" value="0" step='0.01' class="slider" id="Vibration" onchange="showVal($(this).attr('id'), $(this).val())">
+                    <label id="Vibration_o">Vibration: 0.005</label>
+                    <input type="range" min="0" max="10" value="0.005" step='0.001' class="slider" id="Vibration" onchange="showVal($(this).attr('id'), $(this).val())">
                 </div>
                 <div class="slidecontainer">
-                    <label id="Rotation_o">Rotation: 0</label>
-                    <input type="range" min="-0.05" max="0.05" value="0" step='0.01' class="slider" id="Rotation" onchange="showVal($(this).attr('id'), $(this).val())">
+                    <label id="Rotation_o">Rotation: 0.001</label>
+                    <input type="range" min="-0.05" max="0.05" value="0.001" step='0.001' class="slider" id="Rotation" onchange="showVal($(this).attr('id'), $(this).val())">
                 </div>
                 <div id="btns">
-                    <button id="modeBtn" class="btn btn-primary center-block function_btn">Change Mode</button>
+                    <button id="modeBtn" class="btn btn-primary center-block function_btn" style="display: none;">Change Mode</button>
                 </div>
             </div>
         </div>

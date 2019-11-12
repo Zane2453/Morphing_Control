@@ -73,7 +73,7 @@ socketIo.on('connection', function(socket){
     socket.on("Rotation", function(msg){
         if(msg){
             Rotation = msg;
-            dan2.push('Rotation-I', [Rotationg]);
+            dan2.push('Rotation-I', [Rotation]);
         }
         socket.emit("Rotation", Rotation);
     });

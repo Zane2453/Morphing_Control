@@ -74,7 +74,7 @@ function sendAccData(raw_data){
         //socket.emit("Acceleration", [raw_data.x, raw_data.y, raw_data.z]);
         socket.emit("Amplitude", Amplitude);
         socket.emit("Vibration", Vibration);
-        socket.emit("Rotation", Rotation)
+        socket.emit("Rotation", Rotation);
     }
 }
 

@@ -38,14 +38,58 @@ else
     server.listen(config.httpPort, '0.0.0.0');
 
 /*** socket.io ***/
+let Amplitude = 0.1,
+    Vibration = 0.005,
+    Rotation = 0.001,
+    Shape = 9;
+
+// var connections = [],
+//     users = [];
+
 socketIo.on('connection', function(socket){
-    socket.on("Acceleration", function(msg){
-        dan2.push('Acceleration', msg);
-        //console.log(msg);
+    // connections.push(socket);
+    // console.log('Connected: %s sockets connected', connections.length);
+
+    // socket.on("Acceleration", function(msg){
+    //     dan2.push('Acceleration', msg);
+    // });
+    // socket.on("poll", function(df, msg){
+    //     dan2.push(df+'-I', [msg]);
+    // });
+    socket.on("Amplitude", function(msg){
+        if(msg){
+            Amplitude = msg;
+            dan2.push('Amplitude-I', [Amplitude]);
+        }
+        socket.emit("Amplitude", Amplitude);
     });
-    socket.on("poll", function(df, msg){
-        dan2.push(df+'-I', [msg]);
+    socket.on("Vibration", function(msg){
+        if(msg){
+            Vibration = msg;
+            dan2.push('Vibration-I', [Vibration]);
+        }
+        socket.emit("Vibration", Vibration);
     });
+    socket.on("Rotation", function(msg){
+        if(msg){
+            Rotation = msg;
+            dan2.push('Rotation-I', [Rotationg]);
+        }
+        socket.emit("Rotation", Rotation);
+    });
+    socket.on("Shape", function(msg){
+        if(msg){
+            Shape = msg;
+            dan2.push('Shape-I', [Shape]);
+        }
+        socket.emit("Shape", Shape);
+    });
+
+    // socket.on('disconnect', function(data){
+    //     users.splice(users.indexOf(socket.username), 1);
+    //     connections.splice(connections.indexOf(socket), 1);
+    //     console.log('Disconnected: %s sockets connected', connections.length);
+    // });
 });
 
 /*--------------------------------------------------------------------------------*/

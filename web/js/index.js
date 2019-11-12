@@ -58,7 +58,7 @@ function sendAccData(raw_data){
         }else if(data < lower_threshold){
             data = lower_threshold;
         }
-        data = ((data - 10.0) * 10.0) / 65.0;
+        data = Math.round((((data - 10.0) * 10000.0) / 65.0))/1000;
         Amplitude = data;
         Vibration = data;
 

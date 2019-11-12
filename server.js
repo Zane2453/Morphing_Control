@@ -57,28 +57,28 @@ socketIo.on('connection', function(socket){
     //     dan2.push(df+'-I', [msg]);
     // });
     socket.on("Amplitude", function(msg){
-        if(msg){
+        if(msg !== undefined){
             Amplitude = msg;
             dan2.push('Amplitude-I', [Amplitude]);
         }
         socket.emit("Amplitude", Amplitude);
     });
     socket.on("Vibration", function(msg){
-        if(msg){
+        if(msg !== undefined){
             Vibration = msg;
             dan2.push('Vibration-I', [Vibration]);
         }
         socket.emit("Vibration", Vibration);
     });
     socket.on("Rotation", function(msg){
-        if(msg){
+        if(msg !== undefined){
             Rotation = msg;
             dan2.push('Rotation-I', [Rotation]);
         }
         socket.emit("Rotation", Rotation);
     });
     socket.on("Shape", function(msg){
-        if(msg){
+        if(msg !== undefined){
             Shape = msg;
             dan2.push('Shape-I', [Shape]);
         }

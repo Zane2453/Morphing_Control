@@ -31,6 +31,15 @@ function get_sensor_data(){
 
 function chnegeUI(){
     if(acc_flag){
+        if (typeof DeviceMotionEvent.requestPermission === 'function'){
+            DeviceMotionEvent.requestPermission()
+            .then(permissionState => {
+                if (permissionState === 'granted'){
+                    window.addEventListener('devicemotion', deviceMotionHandler, false);
+                }
+            })
+            .catch(console.error);
+        }
         $('#shakeImage').css('display', 'block');
         $('.slidecontainer').css('display', 'none');
         console.log("Shake Mode");
@@ -126,12 +135,10 @@ $(document).ready(function(){
     });
 
     $('#shakeBtn').on('click', function(){
-        if (typeof DeviceMotionEvent.requestPermission === 'function') 
-        {
+        if (typeof DeviceMotionEvent.requestPermission === 'function'){
             DeviceMotionEvent.requestPermission()
             .then(permissionState => {
-                if (permissionState === 'granted') 
-                {
+                if (permissionState === 'granted'){
                     window.addEventListener('devicemotion', deviceMotionHandler, false);
                 }
             })
@@ -163,5 +170,5 @@ $(document).ready(function(){
     // });
 
     // add for Acceleration
-    //window.addEventListener('devicemotion', deviceMotionHandler, false);
+    window.addEventListener('devicemotion', deviceMotionHandler, false);
 })

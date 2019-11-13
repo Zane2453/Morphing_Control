@@ -126,6 +126,17 @@ $(document).ready(function(){
     });
 
     $('#shakeBtn').on('click', function(){
+        if (typeof DeviceMotionEvent.requestPermission === 'function') 
+        {
+            DeviceMotionEvent.requestPermission()
+            .then(permissionState => {
+                if (permissionState === 'granted') 
+                {
+                    window.addEventListener('devicemotion', deviceMotionHandler, false);
+                }
+            })
+            .catch(console.error);
+        }
         $('#prompt').css('display', 'none');
         $('#mode_options').css('display', 'none');
         $('#shakeImage').css('display', 'block');
@@ -152,5 +163,5 @@ $(document).ready(function(){
     // });
 
     // add for Acceleration
-    window.addEventListener('devicemotion', deviceMotionHandler, false);
+    //window.addEventListener('devicemotion', deviceMotionHandler, false);
 })

@@ -62,7 +62,7 @@ function sendAccData(raw_data){
             socket.emit("Shape", Shape);
         }else if(data > color_threshold){
             Red = (Red + 3) % 256;
-            Green = (Green - 3) % 256;
+            Green = (Green + 3) % 256;
             Blue = (Blue + 3) % 256;
             socket.emit("Color", [Red, Green, Blue]);
         }else if(data < lower_threshold){

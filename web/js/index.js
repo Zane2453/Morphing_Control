@@ -152,11 +152,14 @@ $(document).ready(function(){
     // });
 
     // add for Acceleration
-    DeviceMotionEvent.requestPermission()
+    deviceMotionHandler.requestPermission()
     .then(response => {
     if (response == 'granted') {
-        window.addEventListener('devicemotion', deviceMotionHandler, false);
+        window.addEventListener('devicemotion', (e) => {
+        // do something with e
+        })
     }
     })
-    window.addEventListener('devicemotion', deviceMotionHandler, false);
+    .catch(console.error)
+    //window.addEventListener('devicemotion', deviceMotionHandler, false);
 })

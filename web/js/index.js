@@ -5,12 +5,17 @@ var Amplitude = 0.1,
     Rotation = 0.001,
     Shape = 9;
 
+var Red = 217,
+    Green = 143,
+    Blue = 221;
+
 var acc_flag = false;
 var cooldown_interval = 500;
 var cooldown = true;
 
 var higher_threshold = 75.0;
 var lower_threshold = 10.0;
+var color_threshold = 30.0;
 var shape_threshold = 50.0;
 
 function deviceMotionHandler(event){
@@ -55,6 +60,11 @@ function sendAccData(raw_data){
         }else if(data > shape_threshold){
             Shape = (Shape + 1) % 11;
             socket.emit("Shape", Shape);
+        }else if(data > color_threshold){
+            Red = (Red + 10) % 256;
+            Green = (Green - 10) % 256;
+            Blue = (Blue + 10) % 256;
+            socket.emit("Color", [Red, Green, Blue]);
         }else if(data < lower_threshold){
             data = lower_threshold;
         }

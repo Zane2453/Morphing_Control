@@ -43,6 +43,10 @@ let Amplitude = 0.1,
     Rotation = 0.001,
     Shape = 9;
 
+let Red = 217,
+    Green = 143,
+    Blue = 221;
+
 // var connections = [],
 //     users = [];
 
@@ -84,6 +88,9 @@ socketIo.on('connection', function(socket){
         }
         socket.emit("Shape", Shape);
     });
+    socket.on("Color", function(msg){
+        dan2.push('Color-I', msg);
+    });
 
     // socket.on('disconnect', function(data){
     //     users.splice(users.indexOf(socket.username), 1);
@@ -100,6 +107,7 @@ let IDFList = [
         ['Shape-I', ['g']],
         ['Vibration-I', ['g']],
         ['Rotation-I', ['g']],
+        ['Color-I', ['g']]
     // ],
     // ODFList = [
     //     ['Display', ['g']]
@@ -125,7 +133,7 @@ dan2.register(config.IoTtalkURL, {
     'idf_list': IDFList,
     //'odf_list': ODFList,
     'profile': {
-        'model': 'Processing_Control',
+        'model': 'Morphing_Control',
     },
     'accept_protos': ['mqtt'],
 }, init_callback);

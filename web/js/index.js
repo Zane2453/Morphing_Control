@@ -152,14 +152,5 @@ $(document).ready(function(){
     // });
 
     // add for Acceleration
-    deviceMotionHandler.requestPermission()
-    .then(response => {
-    if (response == 'granted') {
-        window.addEventListener('devicemotion', (e) => {
-        // do something with e
-        })
-    }
-    })
-    .catch(console.error)
-    //window.addEventListener('devicemotion', deviceMotionHandler, false);
+    window.addEventListener('devicemotion', deviceMotionHandler, false);
 })

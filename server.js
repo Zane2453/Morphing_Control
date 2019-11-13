@@ -127,7 +127,7 @@ function init_callback(result) {
 }
 
 dan2.register(config.IoTtalkURL, {
-    'name': "1.Smartphone",
+    'name': "1.Morphing",
     'on_signal': on_signal,
     'on_data': on_data,
     'idf_list': IDFList,

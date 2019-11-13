@@ -60,12 +60,12 @@ function sendAccData(raw_data){
         }else if(data > shape_threshold){
             Shape = (Shape + 1) % 11;
             socket.emit("Shape", Shape);
-        }else if(data > color_threshold){
+        }/*else if(data > color_threshold){
             Red = (Red + 3) % 256;
             Green = (Green + 3) % 256;
             Blue = (Blue + 3) % 256;
             socket.emit("Color", [Red, Green, Blue]);
-        }else if(data < lower_threshold){
+        }*/else if(data < lower_threshold){
             data = lower_threshold;
         }
         data = Math.round((((data - 10.0) * 10000.0) / 65.0))/1000;
@@ -152,5 +152,11 @@ $(document).ready(function(){
     // });
 
     // add for Acceleration
+    DeviceMotionEvent.requestPermission()
+    .then(response => {
+    if (response == 'granted') {
+        window.addEventListener('devicemotion', deviceMotionHandler, false);
+    }
+    })
     window.addEventListener('devicemotion', deviceMotionHandler, false);
 })

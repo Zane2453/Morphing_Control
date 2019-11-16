@@ -9,12 +9,17 @@ var Amplitude = 0.1,
 //     Green = 143,
 //     Blue = 221;
     
-var RGB = [[217, 143, 221],
-        [153, 141, 0],
-        [227, 123, 0],
-        [112, 41, 106],
-        [53, 172, 196],
-        [255, 255, 255]
+var RGB = [[217, 143, 221],// light purple
+        [112, 41, 106],// purple
+        [153, 141, 0],// earth color
+        [227, 123, 0],// orange
+        [255, 255, 102],// yellow
+        [155, 51, 0],// red
+        [0, 0, 255],// blue
+        [53, 172, 196],// light blue
+        [0, 102, 0],// green
+        [0, 255,0],// light green
+        [255, 255, 255]// white
     ],
     RGB_index = 0;
 
@@ -79,8 +84,8 @@ function sendAccData(raw_data){
             Shape = (Shape + 1) % 11;
             socket.emit("Shape", Shape);
         }else if(data > color_threshold){
-            RGB_index = (RGB_index + 1) % 6;
-            socket.emit("Color", [RGB[RGB_index][0], RGB[RGB_index][1], RGB[RGB_index][2]]);
+            RGB_index = (RGB_index + 1) % RGB.length;
+            socket.emit("Color", [RGB[RGB_index][0], RGB[RGB_index][1], RGB[RGB_index][2]], RGB_index);
         }else if(data < lower_threshold){
             data = lower_threshold;
         }
@@ -115,6 +120,7 @@ $(document).ready(function(){
     socket.emit("Vibration");
     socket.emit("Rotation");
     socket.emit("Shape");
+    socket.emit("Color");
 
     socket.on("Amplitude", (msg) => {
         Amplitude = msg;
@@ -139,6 +145,10 @@ $(document).ready(function(){
         console.log("Shape: ", Shape);
         $("#Shape_o").text("Shape: " + Shape);
         $("#Shape").attr("value", Shape);
+    });
+    socket.on("Color", (msg) => {
+        RGB_index = msg;
+        console.log("Color: ", RGB[RGB_index]);
     });
 
     $('#shakeBtn').on('click', function(){

@@ -41,7 +41,8 @@ else
 let Amplitude = 0.1,
     Vibration = 0.005,
     Rotation = 0.001,
-    Shape = 9;
+    Shape = 9,
+    RGB_index = 0;
 
 let Red = 217,
     Green = 143,
@@ -88,8 +89,12 @@ socketIo.on('connection', function(socket){
         }
         socket.emit("Shape", Shape);
     });
-    socket.on("Color", function(msg){
-        dan2.push('Color-I', msg);
+    socket.on("Color", function(msg, id){
+        if(msg !== undefined){
+            RGB_index = id;
+            dan2.push('Color-I', msg);
+        }
+        socket.emit("Color", RGB_index);
     });
 
     // socket.on('disconnect', function(data){
